@@ -4,6 +4,9 @@
 for i in "$@"
 do
 case $i in
+    --get-assist-dir|-a)
+	echo "@instantASSIST@"
+    ;;
     --get-conf-dir|-c)
 	echo "@instantConf@"
     ;;
