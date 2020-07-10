@@ -5,34 +5,34 @@ for i in "$@"
 do
 case $i in
     --get-conf-dir|-c)
-	echo "@InstantConf@"
+	echo "@instantConf@"
     ;;
     --get-dotfiles-dir|-d)
-	echo "@InstantDotfiles@"
+	echo "@instantDotfiles@"
     ;;
     --get-logo-dir|-l)
-	echo "@InstantLOGO@"
+	echo "@instantLOGO@"
     ;;
     --get-menu-dir|-m)
-	echo "@InstantMENU@"
+	echo "@instantMENU@"
     ;;
     --get-shell-dir|-s)
-	echo "@InstantShell@"
+	echo "@instantShell@"
     ;;
     --get-themes-dir|-t)
-	echo "@InstantTHEMES@"
+	echo "@instantTHEMES@"
     ;;
     --get-utils-dir|-u)
-	echo "@InstantUtils@"
+	echo "@instantUtils@"
     ;;
     --get-wallpaper-dir|-wa)
-	echo "@InstantWALLPAPER@"
+	echo "@instantWALLPAPER@"
     ;;
     --get-widgets-dir|-wi)
-	echo "@InstantWidgets@"
+	echo "@instantWidgets@"
     ;;
     --get-wm-dir|-wm)
-	echo "@InstantWM@"
+	echo "@instantWM@"
     ;;
     --get-paperbash-dir|-p)
 	echo "@Paperbash@"
