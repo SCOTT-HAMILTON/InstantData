@@ -1,6 +1,19 @@
 #!/bin/sh
 
 #!/bin/bash
+
+# get a subdir under ~/.config if it exists
+# to override specific config dirs under instantdotfiles
+# (this is necessary e.g. to customise rofi themes as a user)
+dotconfigsub(){
+    if [ -d "${1}" ]; then
+        echo "~/.config/${1}"
+    else
+        echo "@instantDotfiles@/${1}"
+    fi
+}
+
+
 for i in "$@"
 do
 case $i in
@@ -12,6 +25,9 @@ case $i in
     ;;
     --get-dotfiles-dir|-d)
 	echo "@instantDotfiles@"
+    ;;
+    --get-userconfig-dir|-uc)
+	dotconfigsub()
     ;;
     --get-logo-dir|-l)
 	echo "@instantLOGO@"
