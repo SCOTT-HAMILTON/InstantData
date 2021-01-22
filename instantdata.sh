@@ -14,6 +14,10 @@ dotconfigsub(){
 }
 
 
+# ppenguin:
+# better to use "real" getopt (and get rid of the Q&D pattern match below), 
+# but this would break non-standard "half-short" options (-wa -wi -wm) for now,
+# so these should be replaced everywhere where they are called
 for i in "$@"
 do
 case $i in
@@ -26,8 +30,9 @@ case $i in
     --get-dotfiles-dir|-d)
 	echo "@instantDotfiles@"
     ;;
-    --get-userconfig-dir|-uc)
-	dotconfigsub()
+    --get-userconfig-dir=*|-uc=*)
+    optarg=$(echo $* | awk -F' ' '$1~/--get-userconfig-dir|-uc/ { match($1, /.*=(.*)/, a); print a[1] }' )
+	dotconfigsub ${optarg}
     ;;
     --get-logo-dir|-l)
 	echo "@instantLOGO@"
