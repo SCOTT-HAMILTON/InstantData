@@ -6,7 +6,7 @@
 # to override specific config dirs under instantdotfiles
 # (this is necessary e.g. to customise rofi themes as a user)
 dotconfigsub(){
-    if [ -d "${1}" ]; then
+    if [ -d "~/.config/${1}" ]; then
         echo "~/.config/${1}"
     else
         echo "@instantDotfiles@/${1}"
