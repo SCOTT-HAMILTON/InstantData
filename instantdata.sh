@@ -6,10 +6,10 @@
 # to override specific config dirs under instantdotfiles
 # (this is necessary e.g. to customise rofi themes as a user)
 dotconfigsub(){
-    if [ -d "~/.config/${1}" ]; then
-        echo "~/.config/${1}"
+    if [ -d ~/".config/${1}" ]; then
+        echo ~/".config/${1}"
     else
-        echo "@instantDotfiles@/${1}"
+        echo "@instantDotfiles@/share/instantdotfiles/${1}"
     fi
 }
 
@@ -23,9 +23,9 @@ checkdeprecated() {
 # better to use "real" getopt (and get rid of the Q&D pattern match below), 
 # but this would break non-standard "half-short" options (-wa -wi -wm) for now,
 # so these should be replaced everywhere where they are called
-for i in "$@"
-do
-case $i in
+
+# don't loop over options, they're mutually exclusive anyway
+case ${1} in
     --get-assist-dir|-a)
 	echo "@instantASSIST@"
     ;;
@@ -74,7 +74,8 @@ case $i in
     ;;
     *)
 		# unknown option
+        echo "Error: unknown option \"${1}\"" >&2
 		exit 1
     ;;
 esac
-done
+
