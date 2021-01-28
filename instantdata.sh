@@ -13,6 +13,11 @@ dotconfigsub(){
     fi
 }
 
+checkdeprecated() {
+    if [ -n "$(echo "${1}" | grep -E '\-[a-z]{2,}')" ]; then
+        echo "WARNING: deprecated option \"${1}\" will be removed in the future. Please use the long option \"${2}\"" >&2
+    fi
+}
 
 # ppenguin:
 # better to use "real" getopt (and get rid of the Q&D pattern match below), 
@@ -30,8 +35,8 @@ case $i in
     --get-dotfiles-dir|-d)
 	echo "@instantDotfiles@"
     ;;
-    --get-userconfig-dir=*|-uc=*)
-    optarg=$(echo $* | awk -F' ' '$1~/--get-userconfig-dir|-uc/ { match($1, /.*=(.*)/, a); print a[1] }' )
+    --get-userconfig-dir=*)
+    optarg=$(echo $* | awk -F' ' '$1~/--get-userconfig-dir/ { match($1, /.*=(.*)/, a); print a[1] }' )
 	dotconfigsub ${optarg}
     ;;
     --get-logo-dir|-l)
@@ -50,12 +55,15 @@ case $i in
 	echo "@instantUtils@"
     ;;
     --get-wallpaper-dir|-wa)
+    checkdeprecated ${1} "--get-wallpaper-dir"
 	echo "@instantWALLPAPER@"
     ;;
     --get-widgets-dir|-wi)
+    checkdeprecated ${1} "--get-widgets-dir"
 	echo "@instantWidgets@"
     ;;
     --get-wm-dir|-wm)
+    checkdeprecated ${1} "--get-wm-dir"
 	echo "@instantWM@"
     ;;
     --get-paperbash-dir|-p)
