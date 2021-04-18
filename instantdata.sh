@@ -14,7 +14,7 @@ dotconfigsub(){
 }
 
 checkdeprecated() {
-    if [ -n "$(echo "${1}" | grep -E '\-[a-z]{2,}')" ]; then
+    if [ -n "$(echo "${1}" | grep -E '^\-[a-z]{1,}')" ]; then
         echo "WARNING: deprecated option \"${1}\" will be removed in the future. Please use the long option \"${2}\"" >&2
     fi
 }
@@ -27,12 +27,15 @@ checkdeprecated() {
 # don't loop over options, they're mutually exclusive anyway
 case ${1} in
     --get-assist-dir|-a)
+	checkdeprecated ${1} "--get-assist-dir"
 	echo "@instantASSIST@"
     ;;
     --get-conf-dir|-c)
+	checkdeprecated ${1} "--get-conf-dir"
 	echo "@instantConf@"
     ;;
     --get-dotfiles-dir|-d)
+	checkdeprecated ${1} "--get-dotfiles-dir"
 	echo "@instantDotfiles@"
     ;;
     --get-userconfig-dir=*)
@@ -40,18 +43,23 @@ case ${1} in
 	dotconfigsub ${optarg}
     ;;
     --get-logo-dir|-l)
+	checkdeprecated ${1} "--get-logo-dir"
 	echo "@instantLOGO@"
     ;;
     --get-menu-dir|-m)
+	checkdeprecated ${1} "--get-menu-dir"
 	echo "@instantMENU@"
     ;;
     --get-shell-dir|-s)
+	checkdeprecated ${1} "--get-shell-dir"
 	echo "@instantShell@"
     ;;
     --get-themes-dir|-t)
+	checkdeprecated ${1} "--get-themes-dir"
 	echo "@instantTHEMES@"
     ;;
     --get-utils-dir|-u)
+	checkdeprecated ${1} "--get-utils-dir"
 	echo "@instantUtils@"
     ;;
     --get-wallpaper-dir|-wa)
@@ -67,9 +75,11 @@ case ${1} in
 	echo "@instantWM@"
     ;;
     --get-paperbash-dir|-p)
+	checkdeprecated ${1} "--get-paperbash-dir"
 	echo "@Paperbash@"
     ;;
     --get-rangerplugins-dir|-r)
+	checkdeprecated ${1} "--get-rangerplugins-dir"
 	echo "@rangerplugins@"
     ;;
     *)
